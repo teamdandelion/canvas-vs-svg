@@ -147,8 +147,8 @@ function svgLine(w, h, data) {
 }
 window.onload = function() {
   // meter = new FPSMeter();
-var w = 600;
-var h = 600;
+var w = 300;
+var h = 300;
 var data = getData(10000, 1, 1);
 data.sort(function(a, b) {return a[0] - b[0]});
 canvasStuff(w, h, data);

@@ -7,7 +7,7 @@ function getData(n, x, y) {
 }
 var pi2 = Math.PI * 2;
 
-var meter;
+// var meter;
 function canvasStuff(w, h, data) {
   var xScale = d3.scale.linear();
   var yScale = d3.scale.linear();
@@ -22,7 +22,7 @@ function canvasStuff(w, h, data) {
   var ctx = canvas.getContext('2d');
   ctx.fillStyle = "rgb(100,0,100)"
   function render() {
-    meter.tickStart();
+    // meter.tickStart();
     console.time("canvas");
     ctx.clearRect(0, 0, w, h);
     data.forEach(function(d) {
@@ -30,7 +30,7 @@ function canvasStuff(w, h, data) {
       ctx.arc(xScale(d[0]), yScale(d[1]), 1, 0, pi2);
       ctx.fill();
     })
-    meter.tick();
+    // meter.tick();
     console.timeEnd("canvas");
   }
   render();
@@ -67,12 +67,12 @@ function svgStuff(w, h, data) {
   z.size([w, h]);
   z.on("zoom", translate);
   function translate() {
-    meter.tickStart();
+    // meter.tickStart();
     console.time("svg");
     var translate = z.translate();
     var scale = z.scale();
     g.attr("transform", "translate(" + translate + ") scale(" + scale + ")");
-    meter.tick();
+    // meter.tick();
     console.timeEnd("svg");
   }
 }
@@ -92,7 +92,7 @@ function canvasLine(w, h, data) {
   var ctx = canvas.getContext('2d');
   ctx.strokeStyle = "rgb(100,0,100)"
   function render() {
-    meter.tickStart();
+    // meter.tickStart();
     console.time("canvas");
     ctx.clearRect(0, 0, w, h);
     ctx.beginPath();
@@ -101,7 +101,7 @@ function canvasLine(w, h, data) {
       ctx.lineTo(xScale(d[0]), yScale(d[1]));
     })
     ctx.stroke();
-    meter.tick();
+    // meter.tick();
     console.timeEnd("canvas");
   }
   render();
@@ -136,21 +136,21 @@ function svgLine(w, h, data) {
   z.size([w, h]);
   z.on("zoom", translate);
   function translate() {
-    meter.tickStart();
+    // meter.tickStart();
     console.time("svg");
     var translate = z.translate();
     var scale = z.scale();
     g.attr("transform", "translate(" + translate + ") scale(" + scale + ")");
-    meter.tick();
+    // meter.tick();
     console.timeEnd("svg");
   }
 }
 window.onload = function() {
-  meter = new FPSMeter();
-var w = 400;
-var h = 400;
+  // meter = new FPSMeter();
+var w = 600;
+var h = 600;
 var data = getData(10000, 1, 1);
-data.sort(function(a, b) {return a[0] > b[0]});
+data.sort(function(a, b) {return a[0] - b[0]});
 canvasStuff(w, h, data);
 
 svgStuff(w, h, data);
